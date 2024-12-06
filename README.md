@@ -4,7 +4,7 @@
 - Docker installed on your system
 
 ## Setup
-1. Copy the environment variables file:
+1. Copy the .env.dev file into a .env file, which is ignored by git (to avoid exposing secrets)
 
 ```bash
 cp .env.dev .env
