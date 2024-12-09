@@ -82,7 +82,7 @@ def load_data_from_api(
 
 @test
 def test_output(output: pd.DataFrame, *args: Any) -> None:
-    output = output[[col for col in output.columns if col != "i"]]
+    output = output[[col for col in output.columns if col != "id"]]
     assert not output.empty, "Observations DataFrame is empty"
 
 
@@ -96,9 +96,6 @@ def test_output_schema(output: pd.DataFrame, *args: Any) -> None:
 
 @test
 def test_output_valid_rows(output: pd.DataFrame, *args: Any) -> None:
-    """
-    Template code for testing the output of the block.
-    """
     non_nullable_columns = ["temperature", "wind_speed", "humidity"]
     assert (
         output[non_nullable_columns].isnull().sum().sum()
