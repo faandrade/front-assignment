@@ -37,6 +37,7 @@ days?
 
 
 ### Flow Diagram
+![Flow Diagram](images/weather_flow_diagram.jpeg)
 
 ### Schemas
 
