@@ -21,6 +21,11 @@ WHERE
       ) 
 )
 
-SELECT dim_station_id, AVG(m_temperature) AS last_week_avg_temp 
-FROM last_week_facts
-GROUP BY dim_station_id
+SELECT
+	dim_station_id,
+	ROUND(AVG(m_temperature),
+	2 ) AS last_week_avg_temp
+FROM
+	last_week_facts
+GROUP BY
+	dim_station_id
