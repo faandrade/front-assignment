@@ -23,6 +23,22 @@ docker compose up
   - Host: `localhost`
   - Port: `5432`
   - Database,  User, Password, Schema: set in `.env` file
+
+### Connecting to the Database
+
+**Using Docker CLI:**
+```bash
+docker exec -it weather-db psql -U <username> -d <database>
+```
+
+**Using DBeaver or similar tools:**
+1. Create new PostgreSQL connection
+2. Connection settings:
+   - Host: localhost
+   - Port: 5432
+   - Database: <from .env>
+   - Username: <from .env>
+   - Password: <from .env>
   
 ## Design Spec
 

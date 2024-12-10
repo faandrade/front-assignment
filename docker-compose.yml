@@ -1,5 +1,6 @@
 services:
   postgres:
+    container_name: weather-db
     image: postgres:14
     restart: on-failure
     environment:
