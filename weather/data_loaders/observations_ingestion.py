@@ -17,9 +17,15 @@ def load_data_from_api(
     url = f"https://api.weather.gov/stations/{kwargs['station_id']}/observations"
 
     if kwargs["reference_date"]:
-        reference_date = datetime.strptime(
-            kwargs["reference_date"], "%Y-%m-%d"
-        ).replace(hour=23, minute=59, second=59, microsecond=999999)
+        try:
+            reference_date = datetime.strptime(
+                kwargs["reference_date"], "%Y-%m-%d"
+            ).replace(hour=23, minute=59, second=59, microsecond=999999)
+        except ValueError:
+            logger = kwargs.get("logger")
+            error_message = f"reference_date must be a string in 'YYYY-MM-DD' format. Received  {kwargs['reference_date']}"
+            logger.error(error_message)
+            raise ValueError(error_message)
 
     else:
         reference_date = kwargs["execution_date"].replace(

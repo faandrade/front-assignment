@@ -12,7 +12,15 @@ if "test" not in globals():
 @data_loader
 def load_data_from_api(*args: Any, **kwargs: Any) -> pd.DataFrame:
     url = f'https://api.weather.gov/stations/{kwargs["station_id"]}'
-    response = requests.get(url).json()
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        logger = kwargs.get("logger")
+        error_message = f"Failed to fetch station data: Invalid station ID '{kwargs['station_id']}'. Please verify the station ID and try again. (Status code: {response.status_code})"
+        logger.error(error_message)
+        raise ValueError(error_message)
+
+    response = response.json()
 
     return pd.DataFrame(
         {
